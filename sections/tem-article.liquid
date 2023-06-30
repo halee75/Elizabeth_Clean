@@ -1,0 +1,38 @@
+<h1>{{ article.title }}</h1>
+ppppp
+<small>{{ article.author }}</small>
+<p>{{ article.published_at | date: '%Y-%M-%D' }}</p>
+
+{% if blog.comments_enabled %}
+  aaaaaaaaaa
+  <div id="comments" class="my-8">
+    {% if article.comments_count > 0 %}
+      {% else %}
+        There are no comments in this article
+    {% endif %}
+  </div>
+
+  <div class="comment_form mb-8">
+    {% form 'new-comment', article %}
+      <div class="flex-1 max-auto items-center max-w-4xl px-4"></div>
+    {% endform %}
+  </div>      
+{% endif %}
+{% schema %}
+  {
+    "name": "Template Article",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_author",
+        "default": true,
+        "label": "Display Author Name"
+      }, {
+        "type": "checkbox",
+        "id": "enable_published_date",
+        "default": true,
+        "label": "Display Publish Date"
+      }
+    ]
+  }
+{% endschema %}
